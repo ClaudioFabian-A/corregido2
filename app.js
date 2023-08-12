@@ -7,8 +7,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 
-app.use("/api/products", productRouter)
-app.use("/api/carts", cartRouter)
+app.use("/api", productRouter)
+app.use("/api", cartRouter)
 
 
 app.listen(PORT, () => {

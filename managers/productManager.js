@@ -1,12 +1,14 @@
 
+import { error } from 'console';
 import fs from 'fs'
 
 
 export default class productManager {
     constructor(path) {
-        this.path = path;
+        (this.path = path), (this.produsts = [])
     }
     getProducts = async () => {
+
         try {
             if (fs.existsSync(this.path)) {
                 const data = await fs.promises.readFile(this.path, 'utf-8');
@@ -21,6 +23,7 @@ export default class productManager {
     };
 
     getProductById = async (prodID) => {
+        
         let datas = await this.getProducts();
         const idProd = datas.find((prod) => prod.id === prodID);
         if (idProd) {
@@ -108,8 +111,9 @@ export default class productManager {
             } else {
                 console.log("campos incompletos");
             };
-        }catch(error) {
-             console.log(error);
-     }
+        } catch (error) {
+            console.log(error);
+        }
     };
+
 }
