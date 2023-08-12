@@ -18,14 +18,25 @@ router.post('/', async (req, res) => {
     const cart = await cartManager.addCart(req.body);
     cart ? res.status(201).json({ message: `Cart creada con exito` }) : res.status(400).json({ message: `Error al crear el Cart`, cart })
 })
+router.post('/:cid/products/:pid', async (req, res) => {
+    try {
+        const pId = parseInt(req.params.pid);
+        const cId = parseInt(req.params.cid);
+        await cartManager.addCartWithId(pId, cId);
+        res.status(200).json({ message: "producto agregado con exito" })
+    } catch (error) {
+        console.log("Error al cargar el producto", error);
+        res.status(400).json({ message: `error al cargar el cart`, error })
+    }
+})
 router.delete('/:cid', async (req, res) => {
     const id = parseInt(req.params.id)
-    const cart = await cartManager.getCarts(id)
+    const cart = await cartManager.getCartsById(id)
     cart ? res.status(200).json({ message: `Cart eliminada con exito` }) : res.status(400).json({ message: `error al eliminarel cart` })
 })
 router.put('/:cid', async (req, res) => {
     const id = parseInt(req.params.id)
-    const cart = await cartManager.getCarts(id);
+    const cart = await cartManager.getCartsById(id);
     cart ? res.status(200).json(cart) : res.status(400).json({ message: `Cart no agregada.` })
 })
 export default router
