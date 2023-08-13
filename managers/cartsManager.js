@@ -51,8 +51,11 @@ export default class cartsManager {
     }
     createId = async () => {
         try {
-            if(fs.existsSync(this.path)){
-                const cIooCart= await fs.promises.readFile(this.path,"utf-8")
+            if (fs.existsSync(this.path)) {
+                const cIooCart = await fs.promises.readFile(this.path, "utf-8");
+                const parCart = JSON.parse(cIooCart);
+                const lenCart = parCart.length;
+                if (lenCart != 0) { return parCart[lenCart - 1].id + 1; } else { return 1 }
             }
 
         } catch (error) {
@@ -64,7 +67,7 @@ export default class cartsManager {
         const id = await this.createId();
         const nCart = { id, products: [] };
         ollCarts.push(nCart);
-        await fs.promises.writeFile(this.path, JSON.stringify(ollCarts, null, '\t'));
+        await fs.promises.writeFile(this.path, JSON.stringify(ollCarts, null, 2));
 
     }
 
