@@ -23,7 +23,7 @@ export default class productManager {
     };
 
     getProductById = async (prodID) => {
-        
+
         let datas = await this.getProducts();
         const idProd = datas.find((prod) => prod.id === prodID);
         if (idProd) {
@@ -36,6 +36,7 @@ export default class productManager {
     updateProduct = async (Products) => {
         try {
             const produ = await this.getProducts();
+
 
             if (produ.length === 0) {
                 Products.id = 1;
@@ -67,7 +68,7 @@ export default class productManager {
 
         console.log('Producto eliminado de la lista');
         // console.log(deleteProduct);
-    }
+    };
     addProduct = async (product) => {
         try {
             const products = await this.getProducts();
@@ -86,28 +87,34 @@ export default class productManager {
             if (rCode) { return ` El codigo ${rCode} no puede utilizarce` };
             let id;
 
-            if (product.title || product.descripcion || product.price || product.thumbnail || product.category || product.status || product.code || product.stock) {
-                if (!(this.products.some((product) => product.id === id))) {
-                    products.length === 0 ? id = 1 : id = product[products.length - 1].id + 1;
-                    const product = {
-
-                        title,
-                        descripcion,
-                        price,
-                        thumbnail,
-                        code,
-                        stock,
-                        id: this.products.length + 1
-                    }
-                    this.products.push({ ...product, id });
-
-                    await fs.promises.writeFile(
-                        this.path,
-                        JSON.stringify(products, null, "/t")
-                    );
-                    return product;
-
+            if (product.title || product.descripcion || product.price || product.thumbnail || category || status || product.code || product.stock) {
+                if (products.length === 0) {
+                    id = 1;
+                } else {
+                    id = products[products.length - 1].id + 1;
                 }
+
+
+
+                const product = {
+
+                    title,
+                    descripcion,
+                    price,
+                    thumbnail,
+                    code,
+                    stock,
+                    id,
+                }
+                products.push({ ...product, id });
+
+                await fs.promises.writeFile(
+                    this.path,
+                    JSON.stringify(products, null, "/t")
+                );
+                return product;
+
+
             } else {
                 console.log("campos incompletos");
             };

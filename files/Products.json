@@ -1,92 +1,96 @@
 [
-    {
-        "id": 1,
-        "title": "A",
-        "description": "caja",
-        "price": 10,
-        "thumbnail": "https",
-        "code": 33,
-        "stock": 100
-    },
-    {
-        "id": 2,
-        "title": "B",
-        "description": "caja",
-        "price": 10,
-        "thumbnail": "https",
-        "code": 35,
-        "stock": 100
-    },
-    {
-        "id": 3,
-        "title": "C",
-        "description": "caja",
-        "price": 10,
-        "thumbnail": "https",
-        "code": 30,
-        "stock": 100
-    },
-    {
-        "id": 4,
-        "title": "D",
-        "description": "caja",
-        "price": 10,
-        "thumbnail": "https",
-        "code": 39,
-        "stock": 100
-    },
-    {
-        "id": 5,
-        "title": "E",
-        "description": "caja",
-        "price": 10,
-        "thumbnail": "https",
-        "code": 3,
-        "stock": 100
-    },
-    {
-        "id": 6,
-        "title": "F",
-        "description": "caja",
-        "price": 10,
-        "thumbnail": "https",
-        "code": 42,
-        "stock": 100
-    },
-    {
-        "id": 7,
-        "title": "G",
-        "description": "caja",
-        "price": 10,
-        "thumbnail": "https",
-        "code": 9,
-        "stock": 100
-    },
-    {
-        "id": 8,
-        "title": "H",
-        "description": "caja",
-        "price": 10,
-        "thumbnail": "https",
-        "code": 20,
-        "stock": 100
-    },
-    {
-        "id": 9,
-        "title": "I",
-        "description": "caja",
-        "price": 10,
-        "thumbnail": "https",
-        "code": 56,
-        "stock": 100
-    },
-    {
-        "id": 10,
-        "title": "J",
-        "description": "caja",
-        "price": 10,
-        "thumbnail": "https",
-        "code": 89,
-        "stock": 100
-    }
+/t{
+/t/t"id": 1,
+/t/t"title": "A",
+/t/t"description": "caja",
+/t/t"price": 10,
+/t/t"thumbnail": "https",
+/t/t"code": 33,
+/t/t"stock": 100
+/t},
+/t{
+/t/t"id": 2,
+/t/t"title": "B",
+/t/t"description": "caja",
+/t/t"price": 10,
+/t/t"thumbnail": "https",
+/t/t"code": 35,
+/t/t"stock": 100
+/t},
+/t{
+/t/t"id": 3,
+/t/t"title": "C",
+/t/t"description": "caja",
+/t/t"price": 10,
+/t/t"thumbnail": "https",
+/t/t"code": 30,
+/t/t"stock": 100
+/t},
+/t{
+/t/t"id": 4,
+/t/t"title": "D",
+/t/t"description": "caja",
+/t/t"price": 10,
+/t/t"thumbnail": "https",
+/t/t"code": 39,
+/t/t"stock": 100
+/t},
+/t{
+/t/t"id": 5,
+/t/t"title": "E",
+/t/t"description": "caja",
+/t/t"price": 10,
+/t/t"thumbnail": "https",
+/t/t"code": 3,
+/t/t"stock": 100
+/t},
+/t{
+/t/t"id": 6,
+/t/t"title": "F",
+/t/t"description": "caja",
+/t/t"price": 10,
+/t/t"thumbnail": "https",
+/t/t"code": 42,
+/t/t"stock": 100
+/t},
+/t{
+/t/t"id": 7,
+/t/t"title": "G",
+/t/t"description": "caja",
+/t/t"price": 10,
+/t/t"thumbnail": "https",
+/t/t"code": 9,
+/t/t"stock": 100
+/t},
+/t{
+/t/t"id": 8,
+/t/t"title": "H",
+/t/t"description": "caja",
+/t/t"price": 10,
+/t/t"thumbnail": "https",
+/t/t"code": 20,
+/t/t"stock": 100
+/t},
+/t{
+/t/t"id": 9,
+/t/t"title": "I",
+/t/t"description": "caja",
+/t/t"price": 10,
+/t/t"thumbnail": "https",
+/t/t"code": 56,
+/t/t"stock": 100
+/t},
+/t{
+/t/t"id": 10,
+/t/t"title": "J",
+/t/t"description": "caja",
+/t/t"price": 10,
+/t/t"thumbnail": "https",
+/t/t"code": 89,
+/t/t"stock": 100
+/t},
+/t{
+/t/t"thumbnail": [],
+/t/t"id": 11
+/t}
 ]
