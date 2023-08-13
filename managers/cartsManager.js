@@ -40,12 +40,18 @@ export default class CartsManager {
 
         }
     }
-    addPCartWithId = async (cId, pId) => {
+    addPCartWithId = async (cid, pid) => {
         // try {
         const ollCarts = await this.getOllCart();
-        const ollCart = ollCarts.find((e) => e.id === cId)
-        const prodFind = ollCart.products.findIndex((e) => e.pId === pId);
-        prodFind ? ollCart.products.find((e) = e.pId === pId).quantity++ : ollCart.products.push({ pId: pId, quantity: 1 });
+        const ollCart = ollCarts.find((e) => e.id === cid)
+        const prodFind = ollCart.products.findIndex((e) => e.pId === pid);
+        if (prodFind !== -1) {
+
+            ollCart.products.find((ollCart) = ollCart.id === pid).quantity++
+        } else {
+            ollCart.products.push({ pid, quantity: 1 })
+        };
+
         await fs.promises.writeFile(this.path, JSON.stringify(ollCarts, null, 2))
         // } catch (error) {
         //     console.log(error);

@@ -5,6 +5,14 @@
       {
         "pId": 1,
         "quantity": 1
+      },
+      {
+        "pId": 1,
+        "quantity": 1
+      },
+      {
+        "pid": 3,
+        "quantity": 1
       }
     ]
   },
@@ -31,27 +39,27 @@
       {
         "pId": 8,
         "quantity": 11
+      },
+      {
+        "pid": 4,
+        "quantity": 1
+      },
+      {
+        "pid": 9,
+        "quantity": 1
+      },
+      {
+        "pid": 9,
+        "quantity": 1
+      },
+      {
+        "pid": 9,
+        "quantity": 1
       }
     ]
   },
   {
     "id": 4,
-    "products": []
-  },
-  {
-    "id": 5,
-    "products": []
-  },
-  {
-    "id": 6,
-    "products": []
-  },
-  {
-    "id": 7,
-    "products": []
-  },
-  {
-    "id": 8,
     "products": []
   }
 ]
