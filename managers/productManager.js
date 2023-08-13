@@ -1,6 +1,6 @@
 
-import { error, log } from 'console';
-import fs from 'fs'
+
+import fs from 'fs';
 
 
 export default class productManager {
@@ -33,10 +33,11 @@ export default class productManager {
         }
     };
 
-    updateProduct = async (Products) => {
-        const { pid } = parseInt(pid);
-        const { title, description, price, thumbnail, category, status, code, stock } = Products
-        if (title === undefined
+    updateProduct = async (id, Products) => {
+        const { pid } = id
+        const { title, description, price, category, thumbnail, status, code, stock } = Products
+        if (
+            title === undefined
             || description === undefined
             || price === undefined
             || category === undefined
@@ -53,8 +54,8 @@ export default class productManager {
                 console.log(`codigo invalido`);
                 return;
             } else {
-                const produ = await this.getProducts({});
-                const produM = produ.map((e) => {
+                const produ2 = await this.getProducts({});
+                const produM = produ2.map((e) => {
                     if (e.id === parseInt(pid)) {
                         const prodUP = {
                             ...e,
@@ -76,20 +77,17 @@ export default class productManager {
                 await fs.promises.writeFile(this.path, JSON.stringify(produM, null, 2));
             }
         }
-    }
+    };
 
 
 
 
     deleteById = async (id) => {
-        let product = await fs.promises.readFile(this.path, "utf-8");
+        const { pid } = id       
+        let allProds = await this.getProducts();
+        let deleteProduct = allProds.filter((product) => product.id !== parseInt(pid));
+        await fs.promises.writeFile(this.path, JSON.stringify(deleteProduct, null, 2));
 
-        let allProds = JSON.parse(product);
-        let deleteProduct = allProds.filter((product) => product.id !== id);
-        await fs.promises.writeFile(this.path, JSON.stringify(deleteProduct), "utf-8");
-
-        console.log('Producto eliminado de la lista');
-        // console.log(deleteProduct);
     };
     addProduct = async (product) => {
         try {

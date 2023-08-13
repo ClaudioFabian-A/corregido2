@@ -21,21 +21,21 @@ router.get('/products/:id', async (req, res) => {
 
 });
 router.put('/products/:pid', async (req, res) => {
-   
-    const product = await manager.updateProduct(req.params, req.body)
+
+    const product = await manager.updateProduct(req.params, req.body);
     product ? res.status(200).json(product) : res.status(400).json({ messege: "Prducto no agregado" })
 
 
 
 });
-router.delete('/:id', async (req, res) => {
-    const id = parseInt(req.params.id)
-    const product = await manager.getProducts(id)
-    product ? res.status(200).json({ message: `Producto id: ${id}, eliminado con exito` }) : res.status(400).json({ message: `error al eliminar el producto` })
+router.delete('/products/:pid', async (req, res) => {
+    
+    const product = await manager.deleteById(req.params);
+    product ? res.status(400).json({ message: `error al eliminar el producto` }): res.status(200).json({ message: `Producto eliminado con exito` }) 
 });
-router.post('/products', async (req, res) => {
+router.post('/products/:pid', async (req, res) => {
     const product = await manager.addProduct(req.body);
-    product ? res.status(201).json({ message: `Producto creado con exito`, product }) : res.status(400).json({ message: `error al crear el producto`, product })
+    product ? res.status(400).json({ message: `error al crear el producto`, product }): res.status(201).json({ message: `Producto creado con exito`, product }) 
 })
 
 export default router

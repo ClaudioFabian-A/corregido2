@@ -29,12 +29,12 @@ router.post('/carts/:cid/products/:pid', async (req, res) => {
         res.status(400).json({ message: `error al cargar el cart`, error })
     }
 })
-router.delete('/:cid', async (req, res) => {
+router.delete('/carts/:cid', async (req, res) => {
     const id = parseInt(req.params.id)
     const cart = await cartManager.getCartsById(id)
     cart ? res.status(200).json({ message: `Cart eliminada con exito` }) : res.status(400).json({ message: `error al eliminarel cart` })
 })
-router.put('/:cid', async (req, res) => {
+router.put('/cart/:cid', async (req, res) => {
     const id = parseInt(req.params.id)
     const cart = await cartManager.getCartsById(id);
     cart ? res.status(200).json(cart) : res.status(400).json({ message: `Cart no agregada.` })
