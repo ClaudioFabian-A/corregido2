@@ -4,21 +4,21 @@ import { __dirname } from "../utils.js";
 const cartManager = new CartsManager(__dirname + "file/Carts.json");
 const router = Router();
 
-router.get('/', async (req, res) => {
+router.get('/carts', async (req, res) => {
     const carts = await cartManager.getCarts();
     carts.length === 0 ? res.status(200).json({ message: `No existen Carts` }) : res.status(400).json(carts);
 
 })
-router.get('/:cid', async (req, res) => {
+router.get('/carts/:cid', async (req, res) => {
     const cartsId = parseInt(req.params.cid);
     const carts = await cartManager.getCartsById(cartsId);
     carts ? res.status(200).json(carts) : res.status(400).json({ message: `Cart inexistente` })
 })
-router.post('/', async (req, res) => {
+router.post('/carts/', async (req, res) => {
     const cart = await cartManager.addCart(req.body);
     cart ? res.status(201).json({ message: `Cart creada con exito` }) : res.status(400).json({ message: `Error al crear el Cart`, cart })
 })
-router.post('/:cid/products/:pid', async (req, res) => {
+router.post('/carts/:cid/products/:pid', async (req, res) => {
     try {
         const pId = parseInt(req.params.pid);
         const cId = parseInt(req.params.cid);
