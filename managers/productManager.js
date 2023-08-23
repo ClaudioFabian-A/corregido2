@@ -2,8 +2,13 @@
 
 import fs from 'fs';
 
+import { v4 as uuidv4 } from 'uuid';
+console.log(uuidv4());
 
-export default class productManager {
+
+
+
+export default class ProductManager {
     constructor(path) {
         (this.path = path), (this.produsts = [])
     }
@@ -15,7 +20,7 @@ export default class productManager {
                 const produ = JSON.parse(data);
                 return produ;
             } else {
-                return [];
+                return    []
             }
         } catch (error) {
             console.log(Error);
@@ -48,7 +53,7 @@ export default class productManager {
             console.log(`Complete los campos requeridos`)
             return;
         } else {
-            const produ = await this.getProducts({});
+            const produ = await this.getProducts();
             const cprodu = produ.find((e) => e.code === code);
             if (cprodu) {
                 console.log(`codigo invalido`);
@@ -83,7 +88,7 @@ export default class productManager {
 
 
     deleteById = async (id) => {
-        const { pid } = id       
+        const { pid } = id
         let allProds = await this.getProducts();
         let deleteProduct = allProds.filter((product) => product.id !== parseInt(pid));
         await fs.promises.writeFile(this.path, JSON.stringify(deleteProduct, null, 2));
@@ -105,28 +110,21 @@ export default class productManager {
             } = product;
             const rCode = products.find((e) => e.code === product.code);
             if (rCode) { return ` El codigo ${rCode} no puede utilizarce` };
+            let id;
+
+            if (product.title || 
+                product.descripcion || 
+                product.price || 
+                product.thumbnail || 
+                product.category || 
+                product.status || 
+                product.code || 
+                product.stock) {              
 
 
-            if (product.title || product.descripcion || product.price || product.thumbnail || category || status || product.code || product.stock) {
-                let id;
-                if (products.length === 0) {
-                    id = 1;
-                } else {
-                    id = products[products.length - 1].id + 1;
-                }
+                id = uuidv4()
 
-
-
-                const product = {
-
-                    title,
-                    descripcion,
-                    price,
-                    thumbnail,
-                    code,
-                    stock,
-                    id,
-                }
+                
                 products.push({ ...product, id });
 
                 await fs.promises.writeFile(
@@ -134,6 +132,7 @@ export default class productManager {
                     JSON.stringify(products, null, "\t")
                 );
                 return product;
+            
 
 
             } else {
@@ -145,3 +144,4 @@ export default class productManager {
     };
 
 }
+

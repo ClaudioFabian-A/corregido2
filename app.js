@@ -7,10 +7,14 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 
-app.use("/api", productRouter)
-app.use("/api", cartRouter)
+
+import { v4 as uuidv4 } from 'uuid';
+console.log(uuidv4());
+
+app.use("/api/products", productRouter)
+app.use("/api/carts", cartRouter)
 
 
 app.listen(PORT, () => {
-    console.log(`Server on PORT : ${PORT}`);
+    console.log(`escuchando por ${PORT}`);
 })
