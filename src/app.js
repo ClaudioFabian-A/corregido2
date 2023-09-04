@@ -25,12 +25,16 @@ io.on('connection', socket => {
         io.emit('logs', logs)
     })
 })
+app.use((req, res, next) => {
+    req.io = io;
+    next();
+})
+
+
 
 
 app.use('/', viewRouter)
-
-
-
+app.use('/realtimeproducts', viewRouter)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -41,5 +45,6 @@ console.log(uuidv4());
 
 app.use("/api/products", productRouter)
 app.use("/api/carts", cartRouter)
+
 
 
