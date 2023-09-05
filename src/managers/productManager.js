@@ -99,7 +99,7 @@ export default class ProductManager {
             const products = await this.getProducts();
             const {
                 title,
-                descripcion,
+                description,
                 price,
                 thumbnail = [],
                 category,
@@ -113,7 +113,7 @@ export default class ProductManager {
             let id;
 
             if (product.title || 
-                product.descripcion || 
+                product.description || 
                 product.price || 
                 product.thumbnail || 
                 product.category || 
