@@ -8,12 +8,14 @@ const router = Router()
 
 
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    const productosManager = manager.getProducts();
 
-    res.render('Home');
+    res.render('Home', { productosManager });
 })
-router.get('/realTimeProducts',(req,res)=>{
-    res.render('realTimeProducts');
+router.get("/realTimeProducts", async (req, res) => {
+    const productosManager = manager.getProducts()
+    res.render('realTimeProducts', { productosManager });
 })
 
 

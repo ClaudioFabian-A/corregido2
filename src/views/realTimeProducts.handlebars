@@ -1,7 +1,18 @@
 <div>
+    <h2>Formulario para agregar productos</h2>
 
-    <h2>Estamos en realtime</h2>
+    <form>
+        <input type="text" id="title" placeholder="Title"></br>
+        <input type="string" id="description" placeholder="Description"></br>
+        <input type="number" id="price" placeholder="Price"></br>
+        <input type="string" id="thumbnail" placeholder="Thumbnail"></br>
+        <input type="string" id="code" placeholder="Code"></br>
+        <input type="number" id="stock" placeholder="Stock"></br>
+        <input type="string" id="category" placeholder="Category"></br>
+        <input type="boolean" id="status" placeholder="Status"></br>
+        <button type="submit" id="buttonSubmit">Enviar</button>
 
+    </form>
 </div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="./js/realTimeProducts.js"></script>
