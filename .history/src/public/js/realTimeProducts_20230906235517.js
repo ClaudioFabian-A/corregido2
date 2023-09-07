@@ -34,30 +34,5 @@ function divProd(prodList) {
     });
 
 }
-const prodForm = document.getElementById("idForm");
-prodForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    let title = prodForm.e.title.value;
-    let description = prodForm.e.value.description;
-    let stock = prodForm.e.value.stock;
-    let thumbnail = prodForm.e.value.thumbnail;
-    let category = prodForm.e.value.category;
-    let price = prodForm.e.value.category;
-    let code = prodForm.e.value.code;
-
-    io.emit("addProduct",{
-        title,
-        description,
-        stock,
-        thumbnail,
-        category,
-        price,
-        code,
-
-    });
-    prodForm.reset();
-
-})
 
 console.log(socket);

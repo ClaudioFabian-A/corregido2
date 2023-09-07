@@ -1,0 +1,22 @@
+<div>
+    <h2>Formulario para agregar productos</h2>
+
+    <form action="./api/products" method="POST" id="idForm">
+        <input type="text" id="title" placeholder="Title"></br>
+        <input type="string" id="description" placeholder="Description"></br>
+        <input type="number" id="price" placeholder="Price"></br>
+        <input type="string" id="thumbnail" placeholder="Thumbnail"></br>
+        <input type="string" id="code" placeholder="Code"></br>
+        <input type="number" id="stock" placeholder="Stock"></br>
+        <input type="string" id="category" placeholder="Category"></br>
+        <input type="boolean" id="status" placeholder="Status"></br>
+        <button type="submit" id="buttonSubmit">Agregar nuevo producto</button></br>
+        <input type="number" id="IdProd" placeholder="Id de producto a eliminar"></br>
+        <button type="submit" id="buttonSubmitDelete">Eliminar el producto</button>
+
+    </form>
+</div>
+<div id="prodContainer">aqui esta el div</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="./js/realTimeProducts.js"></script>

@@ -22,7 +22,7 @@ function divProd(prodList) {
         cartEList += ` <div id=${e.id}>
         <img src=${e.thumbnail} />
         <p>${e.title}</p>
-        <p>${e.category}</p>
+        <p>${e.category}45</p>
         <p>${e.description}</p>
         <p>${e.price}</p>
         <p>${e.code}</p>
@@ -35,28 +35,10 @@ function divProd(prodList) {
 
 }
 const prodForm = document.getElementById("idForm");
-prodForm.addEventListener("submit", (e) => {
+prodForm.addEventListener("submit",(e)=>{
     e.preventDefault();
 
-    let title = prodForm.e.title.value;
-    let description = prodForm.e.value.description;
-    let stock = prodForm.e.value.stock;
-    let thumbnail = prodForm.e.value.thumbnail;
-    let category = prodForm.e.value.category;
-    let price = prodForm.e.value.category;
-    let code = prodForm.e.value.code;
-
-    io.emit("addProduct",{
-        title,
-        description,
-        stock,
-        thumbnail,
-        category,
-        price,
-        code,
-
-    });
-    prodForm.reset();
+    let title= prodForm.e.title.value
 
 })
 
