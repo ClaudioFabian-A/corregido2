@@ -8,13 +8,13 @@ const router = Router()
 
 
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
     const productManager = manager.getProducts();
 
     res.render("Home", { productManager });
 })
 router.get("/realTimeProducts", async (req, res) => {
-    const productManager = manager.getProducts();
+    const productManager = manager.getProducts()
     res.render("realTimeProducts", { productManager });
 })
 
