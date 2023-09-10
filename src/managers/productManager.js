@@ -136,7 +136,7 @@ export default class ProductManager {
 
 
             } else {
-                console.log("campos incompletos");
+                console.log("campos  nnnincompletos");
             };
         } catch (error) {
             console.log(error);

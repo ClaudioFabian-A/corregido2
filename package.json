@@ -1,11 +1,11 @@
 {
   "name": "trabajofinal1",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "./src/app.js",
   "type": "module",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
+    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/app.js"
   },
   "author": "",
   "license": "ISC",

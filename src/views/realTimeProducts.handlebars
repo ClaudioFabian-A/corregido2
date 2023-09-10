@@ -12,11 +12,13 @@
         <input type="boolean" id="status" placeholder="Status" required></br>
         <button type="submit" id="buttonSubmit">Agregar nuevo producto</button></br>
         <input type="number" id="IdProd" placeholder="Id de producto a eliminar"></br>
-        <button type="submit" id="buttonSubmitDelete">Eliminar el producto</button>
+        <button type="button" id="buttonSubmitDelete">Eliminar el producto</button>
 
     </form>
 </div>
 <div id="prodContainer">aqui esta el div</div>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="./js/realTimeProducts.js"></script>
