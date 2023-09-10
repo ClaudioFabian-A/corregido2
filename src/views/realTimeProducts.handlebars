@@ -1,22 +1,105 @@
-<div>
-    <h2>Formulario para agregar productos</h2>
+{{!-- <h2>Formulario para agregar productos</h2>
 
-    <form action="./api/products" method="POST" id="idForm" required>
-        <input type="text" id="title" placeholder="Title" required></br>
-        <input type="string" id="description" placeholder="Description" required></br>
-        <input type="number" id="price" placeholder="Price" required></br>
-        <input type="string" id="thumbnail" placeholder="Thumbnail" required></br>
-        <input type="string" id="code" placeholder="Code" required></br>
-        <input type="number" id="stock" placeholder="Stock" required></br>
-        <input type="string" id="category" placeholder="Category" required></br>
-        <input type="boolean" id="status" placeholder="Status" required></br>
-        <button type="submit" id="buttonSubmit">Agregar nuevo producto</button></br>
-        <input type="number" id="IdProd" placeholder="Id de producto a eliminar"></br>
-        <button type="button" id="buttonSubmitDelete">Eliminar el producto</button>
+<form action="./api/products" method="POST" id="idForm">
+    <input type="text" id="title" placeholder="Title" required></br>
+    <input type="string" id="description" placeholder="Description" required></br>
+    <input type="number" id="price" placeholder="Price" required></br>
+    <input type="string" id="thumbnail" placeholder="Thumbnail" required></br>
+    <input type="string" id="code" placeholder="Code" required></br>
+    <input type="number" id="stock" placeholder="Stock" required></br>
+    <input type="string" id="category" placeholder="Category" required></br>
+    <input type="boolean" id="status" placeholder="Status" required></br>
+    <button type="submit" id="buttonSubmit">Agregar nuevo producto</button></br>
+    <input type="number" id="IdProd" placeholder="Id de producto a eliminar"></br>
+    <button type="button" id="buttonSubmitDelete">Eliminar el producto</button>
 
-    </form>
-</div>
-<div id="prodContainer">aqui esta el div</div>
+</form>
+
+<div id="prodContainer">aqui esta el div QUE NO CARGA</div> --}}
+
+
+<form
+  action="./api/products"
+  method="POST"
+  id="idForm"
+  class="formProducts"
+>
+  <h2 class="subtitle">Registro de productos</h2>
+  <label class="label" for="title">Nombre</label>
+  <input
+    class="controls"
+    type="text"
+    name="title"
+    id="title"
+    placeholder="Nombre"
+    required
+  />
+  <label class="label" for="description">Descripción</label>
+  <input
+    class="controls"
+    type="text"
+    name="description"
+    id="description"
+    placeholder="Descripción"
+    required
+  />
+  <label class="label" for="category">Categoría</label>
+  <input
+    class="controls"
+    type="text"
+    name="category"
+    id="category"
+    placeholder="Categoría"
+    required
+  />
+  <label class="label" for="code">Código</label>
+  <input
+    class="controls"
+    type="text"
+    name="code"
+    id="code"
+    placeholder="Código"
+    required
+  />
+  <label class="label" for="stock">Stock</label>
+  <input
+    class="controls"
+    type="number "
+    name="stock"
+    id="stock"
+    placeholder="0"
+    required
+  />
+  <label class="label" for="price">Precio $</label>
+  <input
+    class="controls"
+    type="float"
+    name="price"
+    id="price"
+    placeholder="00.00"
+    required
+  />
+  <label class="label" for="thumbnail">Imagen: url</label>
+  <input
+    class="controls"
+    type="text"
+    name="thumbnail"
+    id="thumbnail"
+    placeholder="https://imagen.jpg"
+  />
+  <button class="btn btn-add" id="add-btn" type="submit">Registrar</button>
+  <h2 class="subtitle">Eliminar producto</h2>
+  <input
+    class="controls"
+    type="number"
+    name="pid"
+    id="pid"
+    placeholder="ID del producto"
+  />
+  <button class="btn btn-delete" id="buttonSubmitDelete" type="button">Eliminar</button>
+</form>
+
+<div class="container" id="container"></div>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/socket.io/socket.io.js"></script>

@@ -1,67 +1,30 @@
-import express from "express"
+import express from "express";
 import { Server } from "socket.io";
-import Handlebars from 'express-handlebars'
+import handlebars from 'express-handlebars'
 import viewsRouter from './routes/views.router.js'
 import productRouter from "../src/routes/products.router.js"
 import ProductManager from "./managers/productManager.js"
 import cartRouter from "../src/routes/carts.router.js"
-import __dirname from "./utils.js";
+import { __dirname } from "./utils.js";
+import { v4 as uuidv4 } from 'uuid';
+console.log(uuidv4());
+
+
 
 const app = express();
 
 const PORT = process.env.PORT || 8080;
-const server = app.listen(PORT, () => {
-    console.log(`Escuchando en el puerto: ${PORT}`);
-})
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(`${__dirname}/public`));
 
 
-const prodManager = new ProductManager(__dirname + "/files/Products.json");
-const io = new Server(server);
-console.log(`esto ${io}`);
 
-
-
-
-
-
-
-
-app.engine("handlebars", Handlebars.engine());
+app.engine("handlebars", handlebars.engine());
 app.set("views", `${__dirname}/views`);
-app.set("view engine", 'handlebars');
-
-
-
-io.on("connection", async (socket) => {
-    
-    const prodList = await prodManager.getProducts({});
-    io.emit("sendData", prodList);
-    console.log("se escucha", socket.id)
-    
-    
-
-
-    socket.on("updateProduct", async (prod) => {
-        await prodManager.addProduct(prod);
-        const listProducts = await prodManager.getProducts({});
-        io.emit("sendProducts", listProducts);
-    });
-
-    socket.on("deleteProduct", async (id) => {
-        await prodManager.deleteProduct(id);
-        const listProducts = await prodManager.getProducts({});
-        io.emit("sendProducts", listProducts);
-    });
-    socket.on("disconnect", () => {
-        console.log("Cliente desconectado");
-    });
-});
-
-
+app.set("view engine", "handlebars");
 
 
 
@@ -69,12 +32,37 @@ app.use("/api/products", productRouter);
 app.use("/api/carts", cartRouter);
 app.use('/', viewsRouter);
 
+const httpServer = app.listen(PORT, () => {
+    console.log(`Escuchando en el puerto: ${PORT}`);
+})
+
+const prodManager = new ProductManager(__dirname + "/files/Products.json");
+const socketServer = new Server(httpServer);
 
 
 
+socketServer.on("connection", async (socket) => {
+    console.log("Cliente conectado con id: ", socket.id);
 
-import { v4 as uuidv4 } from 'uuid';
-console.log(uuidv4());
+    const prodList = await prodManager.getProducts({});
+    socketServer.emit("prodList", prodList);
+
+    socket.on("updateProduct", async (obj) => {
+        await prodManager.addProduct(obj);
+        const prodList = await prodManager.getProducts({});
+        socketServer.emit("prodList", prodList);
+    });
+
+    socket.on("deleteById", async (id) => {
+        await prodManager.deleteById(id);
+        const prodList = await prodManager.getProducts({});
+        socketServer.emit("prodList", prodList);
+    });
+    socket.on("disconnected", () => {
+        console.log("Cliente desconectado");
+    });
+});
+
 
 
 

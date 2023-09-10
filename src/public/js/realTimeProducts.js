@@ -1,33 +1,50 @@
-const io = io();
+const socketClient = io();
 
-io.on("sendData", (prodList) => {
-    upDataProdList(prodList)
 
-console.log("socket");
+
+socketClient.on("prodList", (prodList) => {
+    upDataProdList(prodList);
+
 });
+
 
 function upDataProdList(prodList) {
 
-    const div = document.getElementById("prodContainer");
+    const div = document.getElementById("container");
 
-    let product = prodList;
-    let productsList = "";
+    let productos = prodList;
+    let products = "";
     div.innerHTML = "";
-    product.forEach((product) => {
-        productsList += `<div id=${product.id}>
-                             <div>
-                             <div>
-                                  <img src=${product.thumbnail} />
-                                      <p>${product.title}</p>
-                                      <p>${product.category}</p>
-                                      <p>${product.description}</p>
-                                      <p>${product.price}</p>
-                                      <p>${product.code}</p>
-                                      <p>${product.stock}</p>
-                              </div>
-                              </div>
-                          </div>`;
-        div.innerHTML = product;
+    productos.forEach((product) => {
+        // products += `<div id="card${product.id}">
+        //                      <div>
+        //                      <div>
+        //                           <img src="${product.thumbnail}" />
+        //                           <div>    
+        //                           <p>${product.title}</p>
+        //                               <p>${product.category}</p>
+        //                               <p>${product.description}</p>
+        //                               <p>${product.price}</p>
+        //                               <p>${product.code}</p>
+        //                               <p>${product.stock}</p>
+        //                       </div>
+        //                               </div>
+        //                       </div>
+        //                   </div>`;
+       products += `<div class="card" id="card${product.id}">
+                    <div class="card-body">
+                      <img src="${product.thumbnail}" width="150"class="card-img-top" alt="${product.title}"/>
+                      <h5 class="card-title">${product.title}</h5>
+                      <div class="card-info">
+                        <p class="card-text">${product.description}</p>
+                        <p class="card-text">Categoría:${product.category}</p>
+                        <p class="card-text">Código:${product.code}</p>
+                        <p class="card-text">Stock:${product.stock}</p>
+                        <p class="card-text">Precio: $${product.price}</p>
+                      </div >
+                    </div >
+                 </div >`
+        div.innerHTML = products;
 
     });
 
@@ -37,14 +54,16 @@ prodForm.addEventListener("submit", (elements) => {
     elements.preventDefault();
 
     let title = prodForm.elements.title.value;
-    let description = prodForm.elements.value.description;
-    let stock = prodForm.elements.value.stock;
-    let thumbnail = prodForm.elements.value.thumbnail;
-    let category = prodForm.elements.value.category;
-    let price = prodForm.elements.value.category;
-    let code = prodForm.elements.value.code;
-    
-    io.emit("updateProduct", {
+    let description = prodForm.elements.description.value;
+    let stock = prodForm.elements.stock.value;
+    let thumbnail = prodForm.elements.thumbnail.value;
+    let category = prodForm.elements.category.value;
+    let price = prodForm.elements.price.value;
+    let code = prodForm.elements.code.value;
+
+
+
+    socketClient.emit("updateProduct", {
         title,
         description,
         stock,
@@ -60,9 +79,9 @@ prodForm.addEventListener("submit", (elements) => {
 
 
 document.getElementById("buttonSubmitDelete").addEventListener("click", (e) => {
-    const deleteElementId = document.getElementById('pid');
+    const deleteElementId = document.getElementById("pid");
     const deleteById = parseInt(deleteElementId.value);
-    io.emit("deleteById", deleteById);
+    socketClient.emit("deleteById", deleteById);
     deleteElementId.value = "";
     Swal.fire({
         position: "top",
