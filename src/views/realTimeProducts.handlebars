@@ -88,18 +88,19 @@
     placeholder="https://imagen.jpg"
   />
   <button class="btn btn-add" id="add-btn" type="submit">Registrar</button>
-  <h2 class="subtitle">Eliminar producto</h2>
-  <input
-    class="controls"
-    type="number"
-    name="pid"
-    id="pid"
-    placeholder="ID del producto"
-  />
+  <h2>Eliminar producto</h2>
+  
+  
+</form>
+<form 
+ action="./api/products"
+  method="POST"
+  id="idForm2">
+  <input  type="number"  id="pid"   placeholder="ID del Producto" />
   <button class="btn btn-delete" id="buttonSubmitDelete" type="button">Eliminar</button>
 </form>
 
-<div class="container" id="container"></div>
+<div id="container"></div>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/socket.io/socket.io.js"></script>

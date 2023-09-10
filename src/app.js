@@ -53,7 +53,9 @@ socketServer.on("connection", async (socket) => {
         socketServer.emit("prodList", prodList);
     });
 
-    socket.on("deleteById", async (id) => {
+    socket.on("deletElement", async (id) => {
+        console.log(deletElement);
+    
         await prodManager.deleteById(id);
         const prodList = await prodManager.getProducts({});
         socketServer.emit("prodList", prodList);
@@ -62,19 +64,6 @@ socketServer.on("connection", async (socket) => {
         console.log("Cliente desconectado");
     });
 });
-
-
-
-
-
-
-
-
-
-// app.use((req, res, next) => {
-//     req.io = io;
-//     next();
-// })
 
 
 

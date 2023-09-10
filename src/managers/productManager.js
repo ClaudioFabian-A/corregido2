@@ -84,27 +84,7 @@ export default class ProductManager {
         }
     };
 
-    deleteThisProduct = async (id) => {
-        try {
-          const products = await this.getProducts();
-          const index = products.findIndex((p) => p.id === parseInt(id));
-    
-          if (index < 0) {
-            return `Can't find product with id : ${id}`;
-          }
-          products.splice(index, 1);
-    
-          await fs.promises.writeFile(
-            this.path,
-            JSON.stringify(products, null, "\t")
-          );
-    
-          return products;
-        } catch (error) {
-          console.log(error);
-        }
-      };
-
+   
 
 
 

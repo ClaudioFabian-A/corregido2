@@ -1,54 +1,33 @@
 const socketClient = io();
+const div = document.getElementById("container");
 
 
 
-socketClient.on("prodList", (prodList) => {
-    upDataProdList(prodList);
-
-});
-
-
-function upDataProdList(prodList) {
-
-    const div = document.getElementById("container");
-
-    let productos = prodList;
-    let products = "";
+socketClient.on("prodList", prodList => {
     div.innerHTML = "";
-    productos.forEach((product) => {
-        // products += `<div id="card${product.id}">
-        //                      <div>
-        //                      <div>
-        //                           <img src="${product.thumbnail}" />
-        //                           <div>    
-        //                           <p>${product.title}</p>
-        //                               <p>${product.category}</p>
-        //                               <p>${product.description}</p>
-        //                               <p>${product.price}</p>
-        //                               <p>${product.code}</p>
-        //                               <p>${product.stock}</p>
-        //                       </div>
-        //                               </div>
-        //                       </div>
-        //                   </div>`;
-       products += `<div class="card" id="card${product.id}">
-                    <div class="card-body">
-                      <img src="${product.thumbnail}" width="150"class="card-img-top" alt="${product.title}"/>
-                      <h5 class="card-title">${product.title}</h5>
-                      <div class="card-info">
-                        <p class="card-text">${product.description}</p>
-                        <p class="card-text">Categoría:${product.category}</p>
-                        <p class="card-text">Código:${product.code}</p>
-                        <p class="card-text">Stock:${product.stock}</p>
-                        <p class="card-text">Precio: $${product.price}</p>
-                      </div >
-                    </div >
-                 </div >`
-        div.innerHTML = products;
+    const virtualFragment = document.createDocumentFragment();
+    for (let i = 0; i < prodList.length; i++) {
+        const newDiv = document.createElement('div');
+        const div = document.createElement('div');
+        div.innerHTML = `<div class="card" id="card${prodList[i].id}">
+            <div>
+              <img src="${prodList[i].thumbnail}"  alt="${prodList[i].title}"/>
+              <h3>${prodList[i].title}</h3>
+              <div>
+                <p>${prodList[i].description}</p>
+                <p>Categoría:${prodList[i].category}</p>
+                <p>Código:${prodList[i].code}</p>
+                <p>Stock:${prodList[i].stock}</p>
+                <p>Precio: $${prodList[i].price}</p>
+              </div >
+            </div >
+         </div >`
+        newDiv.appendChild(div);
+        virtualFragment.appendChild(newDiv);
+    }
+    div.appendChild(virtualFragment);
+})
 
-    });
-
-}
 const prodForm = document.getElementById("idForm");
 prodForm.addEventListener("submit", (elements) => {
     elements.preventDefault();
@@ -78,19 +57,24 @@ prodForm.addEventListener("submit", (elements) => {
 });
 
 
-document.getElementById("buttonSubmitDelete").addEventListener("click", (e) => {
-    const deleteElementId = document.getElementById("pid");
-    const deleteById = parseInt(deleteElementId.value);
-    socketClient.emit("deleteById", deleteById);
-    deleteElementId.value = "";
-    Swal.fire({
-        position: "top",
-        icon: "success",
-        title: "prod delete",
-        showConfirmButton: false,
-        timer: 2000,
-    });
-    console.log('listo');
+const idForm2 = document.getElementById("idForm2");
+idForm2.addEventListener("submit", (evt) => {
+    evt.preventDefault();
 
+    let deleteById = idForm2.evt.pid.value;
+    socketClient.emit("deletElement",  {deleteById} );
+    idForm2.reset();
+})
+
+
+Swal.fire({
+    position: "top",
+    icon: "success",
+    title: "borrado",
+    showConfirmButton: false,
+    timer: 2000,
 });
+console.log('listo');
+
+
 // console.log(socket);
