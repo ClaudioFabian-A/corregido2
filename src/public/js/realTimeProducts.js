@@ -57,14 +57,11 @@ prodForm.addEventListener("submit", (elements) => {
 });
 
 
-const idForm2 = document.getElementById("idForm2");
-idForm2.addEventListener("submit", (evt) => {
-    evt.preventDefault();
-
-    let deleteById = idForm2.evt.pid.value;
-    socketClient.emit("deletElement",  {deleteById} );
-    idForm2.reset();
-})
+document.getElementById("buttonSubmitDelete").addEventListener("click",(e)=>{
+    const deletePid = document.getElementById("pid");
+    const deleteId = parseInt(deletePid.value);
+    socketClient.emit("deleteById",deleteId);
+    deletePid.value="";
 
 
 Swal.fire({
@@ -74,6 +71,7 @@ Swal.fire({
     showConfirmButton: false,
     timer: 2000,
 });
+})
 console.log('listo');
 
 
